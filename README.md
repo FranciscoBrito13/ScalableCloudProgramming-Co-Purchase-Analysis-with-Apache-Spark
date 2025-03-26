@@ -1,7 +1,7 @@
 # ScalableCloudProgramming-Co-Purchase-Analysis-with-Apache-Spark
 This project was developed as part of the Scalable and Cloud Programming course and implements a distributed system to perform co-purchase analysis using Scala and Apache Spark.
 
-The objective is to process a dataset of supermarket orders and calculate how often each pair of products appears together in the same order. This analysis is widely used in recommendation systems, retail analytics, and market basket analysis.
+The objective is to process a dataset of supermarket orders and calculate how often each pair of products appears together in the same order.
 
 # Dataset
 

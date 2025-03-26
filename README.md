@@ -14,7 +14,7 @@ The program identifies all pairs of products that appear together in at least on
 product1,product2,count
 Only one entry is saved per pair, e.g. 12,14,2 implies that products 12 and 14 appeared together in 2 different orders.
 
-##How to Run on Google Cloud Dataproc
+# How to Run on Google Cloud Dataproc
 Create a GCS bucket and upload:
 
 The dataset file (e.g. order_products.csv)

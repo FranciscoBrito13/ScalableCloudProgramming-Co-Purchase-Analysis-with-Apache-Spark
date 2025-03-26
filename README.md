@@ -15,29 +15,34 @@ product1,product2,count
 Only one entry is saved per pair, e.g. 12,14,2 implies that products 12 and 14 appeared together in 2 different orders.
 
 # How to Run on Google Cloud Dataproc
-Create a GCS bucket and upload:
 
-The dataset file (e.g. order_products.csv)
+Example Configuration Based on This Project
+Input CSV file: gs://co-purchase/order_products.csv
+Output directory: gs://co-purchase/final_output
+JAR file to submit: scp_project_scala_2.12-0.1.0-SNAPSHOT.jar
+Main class: Main
 
-The compiled JAR file (e.g. scp_project_scala_2.12-0.1.0-SNAPSHOT.jar)
 
-Create a cluster (example with 2 workers):
+How to Run on Google Cloud Dataproc
 
-gcloud dataproc clusters create cluster-2w \
-  --region=europe-west1 \
-  --num-workers=2 \
-  --worker-machine-type=n2-standard-2 \
-  --worker-boot-disk-size=240 \
-  --master-machine-type=n2-standard-2 \
-  --master-boot-disk-size=240 \
-  --image-version=2.2-debian12 \
-  --project=YOUR_PROJECT_ID
-Submit the Spark job:
+Upload the CSV dataset and the compiled JAR to your GCS bucket.
 
-gcloud dataproc jobs submit spark \
-  --cluster=cluster-2w \
-  --region=europe-west1 \
-  --class=Main \
-  --jars=gs://YOUR_BUCKET_NAME/THE_JAR_NAME.jar
-Output will be saved in your GCS bucket, as defined in the code (val outputPath).
+Create the cluster with: gcloud dataproc clusters create cluster-2w
+--region=europe-west1
+--num-workers=2
+--worker-machine-type=n2-standard-2
+--worker-boot-disk-size=240
+--master-machine-type=n2-standard-2
+--master-boot-disk-size=240
+--image-version=2.2-debian12
+--project=YOUR_PROJECT_ID
 
+Submit the job with: gcloud dataproc jobs submit spark
+--cluster=cluster-2w
+--region=europe-west1
+--class=Main
+--jars=gs://co-purchase/scp_project_scala_2.12-0.1.0-SNAPSHOT.jar
+
+Output
+
+The output will be saved as a CSV in: gs://co-purchase/final_output/
